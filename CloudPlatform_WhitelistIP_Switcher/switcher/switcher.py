@@ -9,9 +9,10 @@ program       : *_* switch WhitelistIP call file(main interface) *_*
 """
 
 
+from CloudPlatform_WhitelistIP_Switcher.config.auth import user_auth
 from CloudPlatform_WhitelistIP_Switcher.switcher.AWS_WhitelistIP_Switcher import whitelistip_switcher as aws_switcher
 from CloudPlatform_WhitelistIP_Switcher.switcher.AlibabaCloud_WhitelistIP_Switcher import whitelistip_switcher as alibabacloud_switcher
-from CloudPlatform_WhitelistIP_Switcher.config.auth import aws_region_list, alibabacloud_region_list, user_auth
+from aliyunsdkcore.acs_exception.exceptions import ClientException, ServerException
 
 
 def switcher(cloud_platform, modify_mode, old_whitelistip,
@@ -47,31 +48,20 @@ def switcher(cloud_platform, modify_mode, old_whitelistip,
         print("Get invalid command, program exit...")
     else:
         if cloud_platform == "AWS":
-            if not is_region_distinguish:
-                if not region:
-                    region = aws_region_list[0]
-                if modify_mode == "append":
-                    aws_switcher.new_whitelistip_append(region, old_whitelistip, new_whitelistip)
-                elif modify_mode == "delete":
-                    aws_switcher.old_whitelistip_delete(region, old_whitelistip)
-            elif is_region_distinguish:
-                for region in aws_region_list:
-                    if modify_mode == "append":
-                        aws_switcher.new_whitelistip_append(region, old_whitelistip, new_whitelistip)
-                    elif modify_mode == "delete":
-                        aws_switcher.old_whitelistip_delete(region, old_whitelistip)
+            if modify_mode == "append":
+                aws_switcher.new_whitelistip_append(region, old_whitelistip, new_whitelistip,
+                                                    is_region_distinguish=is_region_distinguish)
+            elif modify_mode == "delete":
+                aws_switcher.old_whitelistip_delete(region, old_whitelistip,
+                                                    is_region_distinguish=is_region_distinguish)
 
         elif cloud_platform == "AlibabaCloud":
-            if not is_region_distinguish:
-                if not region:
-                    region = alibabacloud_region_list[0]
+            try:
                 if modify_mode == "append":
-                    alibabacloud_switcher.new_whitelistip_append(region, old_whitelistip, new_whitelistip, comment)
+                    alibabacloud_switcher.new_whitelistip_append(region, old_whitelistip, new_whitelistip, comment,
+                                                                 is_region_distinguish=is_region_distinguish)
                 elif modify_mode == "delete":
-                    alibabacloud_switcher.old_whitelistip_delete(region, old_whitelistip)
-            elif is_region_distinguish:
-                for region in alibabacloud_region_list:
-                    if modify_mode == "append":
-                        alibabacloud_switcher.new_whitelistip_append(region, old_whitelistip, new_whitelistip, comment)
-                    elif modify_mode == "delete":
-                        alibabacloud_switcher.old_whitelistip_delete(region, old_whitelistip)
+                    alibabacloud_switcher.old_whitelistip_delete(region, old_whitelistip,
+                                                                 is_region_distinguish=is_region_distinguish)
+            except (ClientException, ServerException):
+                pass
