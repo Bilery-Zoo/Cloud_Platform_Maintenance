@@ -34,7 +34,7 @@ ip_list: list = ["127.0.0.0", ] if UT_FLAG else ["127.0.0.0", "127.0.0.1", ]
 
 data_info = []
 for ip in ip_list:
-    for ip_info in whitelistip_finder.get_whitelistip_info(account, ip, is_region_distinguish=True):
+    for ip_info in whitelistip_finder.get_whitelistip_info(ip, is_region_distinguish=True):
         data_info.append(ip_info)
 
 data_header: list = ["Account", "Region", "Service", "IP", "Id", "Name", "Detail"]
