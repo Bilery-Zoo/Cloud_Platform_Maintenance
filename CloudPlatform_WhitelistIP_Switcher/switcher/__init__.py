@@ -1,3 +1,3 @@
-from .AWS_WhitelistIP_Switcher import whitelistip_switcher
-from .AlibabaCloud_WhitelistIP_Switcher import whitelistip_switcher
+from .AWS_WhitelistIP_Switcher import whitelistip_finder, whitelistip_switcher
+from .AlibabaCloud_WhitelistIP_Switcher import whitelistip_finder, whitelistip_switcher
 from . import switcher
