@@ -15,7 +15,7 @@ remark       : *_* README *_*
 
 About Script
 
-        This script is to archive a general handler of switching WhitelistIP setting for access control to cloud environment in
+        This script is to perform a general handler of switching WhitelistIP setting for access control to cloud environment in
     cloud platform of AWS and AlibabaCloud(Microsoft Azure's script developing task was deprecated on 2019/09/06).
     The script is mainly designed doing two jobs:
         ①. Append new WhitelistIP into access control of cloud platform services which has old WhitelistIP configured;
