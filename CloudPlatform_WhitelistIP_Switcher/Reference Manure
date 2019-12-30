@@ -1,0 +1,85 @@
+"""
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
+create_time   : 2019-12-16
+remark       : *_* Reference Manual *_*
+"""
+
+
+            　　 　 　　　　 　 |＼＿/|
+            　　 　 　　　　 　 | ・x・ |
+            　　 ＼＿＿＿＿＿／　　　 |
+            　　 　 |　　　 　　　　　|    私はBilery Zooです...
+            　　　　＼　　　　　 　ノ　
+            　（（（　(/￣￣￣￣(/ヽ)
+
+
+About Config File
+
+
+    There is only one config file including authentication info(access key / secret key) of AWS and AlibabaCloud
+    accounts in current version.
+
+        /config/auth.py
+
+    As accounts info of cloud platforms changing, you can correct them freely and easily by doing generally
+    INSERT, DELETE and MODIFY actions.
+    Variables below are authentication info in current version. You can easily recognize each info
+    by its three-part-namespace.
+
+        AlibabaCloud_Access_Key
+            -> AlibabaCloud Environment Access key & Secret key
+        AWS_Access_Key
+            -> AWS Environment Access key & Secret key
+
+    For example, when you want to authenticate access to AWS environment account,
+    just please pass in the variable of `AWS_Access_Key`. These authentication info variables are imported into
+    every main call files, so you can read a line of head code in each of them like:
+
+        from CloudPlatform_WhitelistIP_Switcher.config.auth import AlibabaCloud_Access_Key
+
+
+About Call File
+
+
+    Files below in base directory are main call interface. You can easily recognize each file's function
+    by its three-part-namespace.
+
+        aws_new_whitelistip_append.py
+            Call file of new WhitelistIP appending to AWS platform.
+        aws_old_whitelistip_delete.py
+            Call file of old WhitelistIP deleting to AWS platform.
+        aws_whitelistip_find.py
+            Call file of finding WhitelistIP config info in AlibabaCloud platform(generate a .csv result file in default).
+        alibabacloud_new_whitelistip_append.py
+            Call file of new WhitelistIP appending to AlibabaCloud platform.
+        alibabacloud_old_whitelistip_delete.py
+            Call file of old WhitelistIP deleting to AlibabaCloud platform.
+        alibabacloud_whitelistip_find.py
+            Call file of finding WhitelistIP config info in AWS platform(generate a .csv result file in default).
+
+    For example, when you want to get the config info of a &/ several WhitelistIP(s) in AWS,
+    just please execute `alibabacloud_whitelistip_find.py` like(if `python` alias to `python3` in your OS for the script is
+    developed in Python3):
+            shell> python alibabacloud_whitelistip_find.py
+        Or:
+            shell> python3 alibabacloud_whitelistip_find.py
+
+
+About Argument Variable
+
+
+    When you are going to execute a call file listed upper, you may need to respecify the argument variables. Such as
+    info of access authentication to cloud platform account, new WhitelistIP to append and old WhitelistIP to remove.
+    Each call file has a head info area for you to set values of these variables. For example,
+    in `aws_new_whitelistip_append.py`, the head info area contains argument variables like this
+
+        key = AWS_Access_Key
+        new_whitelistip = "127.0.0.1"
+        old_whitelistip = "127.0.0.0"
+
+    If you want to append a new whitelistIP of "172.172.172.172" into AWS environment, and the old whitelistIP
+    is "127.127.127.127", just correct its values like below.
+
+        key = AWS_Access_Key
+        new_whitelistip = "172.172.172.172"
+        old_whitelistip = "127.127.127.127"

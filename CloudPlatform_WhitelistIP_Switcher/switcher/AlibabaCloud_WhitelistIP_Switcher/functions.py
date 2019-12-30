@@ -3,7 +3,7 @@
 
 
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-09-05
 program       : *_* base functions of AlibabaCloud handlers module *_*
 """
@@ -20,19 +20,19 @@ from aliyunsdkcdn.request.v20180510 import BatchSetCdnDomainConfigRequest
 from aliyunsdkrds.request.v20140815 import DescribeDBInstancesRequest, DescribeDBInstanceIPArrayListRequest
 from aliyunsdkrds.request.v20140815 import ModifySecurityIpsRequest
 
-from CloudPlatform_WhitelistIP_Switcher.config.auth import AlibabaCloud_Access_Key
 from CloudPlatform_WhitelistIP_Switcher.lib.log import LOG, log
 
 logger = LOG().logger()
 
 
 class AlibabaCloud(object):
-    def __init__(self, region, ):
+    def __init__(self, key: dict, region, ):
         """
         Init construct.
+        :param key: AlibabaCloud access key.
         :param region: AlibabaCloud region name.
         """
-        self.AlibabaCloud_Access_Key = AlibabaCloud_Access_Key
+        self.key = key
         self.region_id = region
 
     def __repr__(self):
@@ -56,7 +56,7 @@ class AlibabaCloud(object):
             https://www.alibabacloud.com/help/zh/doc-detail/67117.htm?spm=a2c63.p38356.b99.3.17cd664b0ByM3l
         :return: AlibabaCloud client object.
         """
-        return AcsClient(region_id=self.region_id, **self.AlibabaCloud_Access_Key)
+        return AcsClient(region_id=self.region_id, **self.key)
 
     @log(logger=logger, if_exit=True)
     def get_slb_whitelistip_info(self, ip, ) -> typing.Generator:

@@ -3,18 +3,21 @@
 
 
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-09-05
 program       : *_* New WhitelistIP appending call file of AlibabaCloud *_*
 """
 
 
 from CloudPlatform_WhitelistIP_Switcher.switcher import switcher
+from CloudPlatform_WhitelistIP_Switcher.config.auth import AlibabaCloud_Access_Key
 
 
 """
-*******************************************************************************
-Unit test button
+************************************************************************************************************************
+
+Self-definition Config Variable Area, you can modify these values as you need.
+
             　　 　 　　　　 　 |＼＿/|
             　　 　 　　　　 　 | ・x・ |
             　　 ＼＿＿＿＿＿／　　　 |
@@ -22,24 +25,23 @@ Unit test button
             　　　　＼　　　　　 　ノ　
             　（（（　(/￣￣￣￣(/ヽ)
 """
-UT_FLAG: bool = True
-"""
-Default `True` for script testing
-Set to `False` when production using
-*******************************************************************************
-"""
+
+key = AlibabaCloud_Access_Key
+new_whitelistip = "127.0.0.1"
+old_whitelistip = "127.0.0.0"
 
 """
-*******************************************************************************
-WhitelistIP setting area
+
+    key
+        -> Access key(set in `/config/auth.py` file) to the specified AlibabaCloud platform account
+    new_whitelistip
+        -> Whitelistip to append
+    old_whitelistip
+        -> Whitelistip to remove(Notice: this script does not do the removing action and the IP is used for browsing info)
+
+************************************************************************************************************************
 """
-new_whitelistip = "127.0.0.1"
-old_whitelistip = "127.0.0.0" if UT_FLAG else "0.0.0.0"
-"""
-Setting `new_whitelistip`(to append) and `old_whitelistip`(to remove)
-Handlers below catch these two Args to do the switching jobs.
-*******************************************************************************
-"""
+
 
 switcher.switcher(cloud_platform="AlibabaCloud", modify_mode="append", old_whitelistip=old_whitelistip,
-                  new_whitelistip=new_whitelistip, is_region_distinguish=False)
+                  new_whitelistip=new_whitelistip, key=key, is_region_distinguish=False)

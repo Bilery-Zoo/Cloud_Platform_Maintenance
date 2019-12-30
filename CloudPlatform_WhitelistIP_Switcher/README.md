@@ -1,7 +1,7 @@
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-09-09
-remark       : *_* Reference Manual *_*
+remark       : *_* README *_*
 """
 
 
@@ -20,6 +20,8 @@ About Script
     The script is mainly designed doing two jobs:
         ①. Append new WhitelistIP into access control of cloud platform services which has old WhitelistIP configured;
         ②. Delete old WhitelistIP from access control of cloud platform services which has new WhitelistIP appended.
+        
+        Read `Reference Manual` file for more executing information.
 
 About Files
 
@@ -37,40 +39,40 @@ About Files
             └── switcher
                 ├── AlibabaCloud_WhitelistIP_Switcher
                 │   ├── functions.py
-                │   ├── README.md
-                │   ├── requirements.txt
                 │   └── whitelistip_switcher.py
                 ├── AWS_WhitelistIP_Switcher
                 │   ├── functions.py
-                │   ├── README.md
-                │   ├── requirements.txt
                 │   └── whitelistip_switcher.py
                 └── switcher.py
-    ①. /config
+    1. /config
         Config defination directory.
         Current version mainly includes authentications to connect to cloud platform.
-    ②. /lib
+    2. /lib
         User-define library directory.
         Current version mainly includes log logging module.
-    ③. /switcher
+    3. /switcher
         Main program defination directory.
         Current version includes WhitelistIP switching functions of AWS and AlibabaCloud, read each sub folders for detail.
-    ④. aws_new_whitelistip_append.py
+    4. aws_new_whitelistip_append.py
         Call file of new WhitelistIP appending to AWS platform.
-    ⑤. aws_old_whitelistip_delete.py
+    5. aws_old_whitelistip_delete.py
         Call file of old WhitelistIP deleting to AWS platform.
-    ⑥. alibabacloud_new_whitelistip_append.py
+    6. aws_whitelistip_find.py
+        Call file of finding WhitelistIP config info in AlibabaCloud platform(generate a .csv result file in default).
+    7. alibabacloud_new_whitelistip_append.py
         Call file of new WhitelistIP appending to AlibabaCloud platform.
-    ⑦. alibabacloud_old_whitelistip_delete.py
+    8. alibabacloud_old_whitelistip_delete.py
         Call file of old WhitelistIP deleting to AlibabaCloud platform.
-    ⑧. requirements.txt
+    9. alibabacloud_whitelistip_find.py
+        Call file of finding WhitelistIP config info in AWS platform(generate a .csv result file in default).
+    10. requirements.txt
         Third-party packages of Python needing to install.
         
 About Deployment
 
         Requirements to execute this script, see below:
     ①. OS
-        Any.
+        Unix-like.
     ②. Programming Language
         Python 3.6 or upper.
             Because of using standard library `typing` released in Python v3.6 to mark data types

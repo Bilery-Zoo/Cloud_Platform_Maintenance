@@ -1,5 +1,5 @@
 boto3
-aliyunsdkcore
-aliyunsdkslb
-aliyunsdkcdn
-aliyunsdkrds
+aliyun_python_sdk_core
+aliyun_python_sdk_slb
+aliyun_python_sdk_cdn
+aliyun_python_sdk_rds

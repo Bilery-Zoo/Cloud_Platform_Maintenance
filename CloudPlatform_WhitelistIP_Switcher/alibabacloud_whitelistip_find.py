@@ -3,38 +3,47 @@
 
 
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-10-01
 program       : *_* Get WhitelistIP info call file of AlibabaCloud *_*
 """
 
 
 import csv
-from CloudPlatform_WhitelistIP_Switcher.switcher.AlibabaCloud_GIP_Switcher import whitelistip_finder
+from CloudPlatform_WhitelistIP_Switcher.switcher.AlibabaCloud_WhitelistIP_Switcher import whitelistip_finder
+from CloudPlatform_WhitelistIP_Switcher.config.auth import AlibabaCloud_Access_Key
 
 
 """
-*******************************************************************************
-Unit test button
+************************************************************************************************************************
+
+Self-definition Config Variable Area, you can modify these values as you need.
+
             　　 　 　　　　 　 |＼＿/|
             　　 　 　　　　 　 | ・x・ |
             　　 ＼＿＿＿＿＿／　　　 |
-            　　 　 |　　　 　　　　　|    私もBilery Zooです...
+            　　 　 |　　　 　　　　　|    私はBilery Zooです...
             　　　　＼　　　　　 　ノ　
             　（（（　(/￣￣￣￣(/ヽ)
 """
-UT_FLAG: bool = False
-"""
-Default `True` for script testing
-Set to `False` when production using
-*******************************************************************************
+
+key = AlibabaCloud_Access_Key
+ip_list: list = ["127.0.0.0", "127.0.0.1", ]
+
 """
 
-ip_list: list = ["127.0.0.0", ] if UT_FLAG else ["127.0.0.0", "127.0.0.1", ]
+    key
+        -> Access key(set in `/config/auth.py` file) to the specified AlibabaCloud platform account
+    ip_list
+        -> IP(s) which is used for browsing info
+
+************************************************************************************************************************
+"""
+
 
 data_info = []
 for ip in ip_list:
-    for ip_info in whitelistip_finder.get_whitelistip_info(ip, is_region_distinguish=True):
+    for ip_info in whitelistip_finder.get_whitelistip_info(ip, key, is_region_distinguish=True):
         data_info.append(ip_info)
 
 data_header: list = ["Region", "Service", "IP", "Id", "Name", "Detail"]

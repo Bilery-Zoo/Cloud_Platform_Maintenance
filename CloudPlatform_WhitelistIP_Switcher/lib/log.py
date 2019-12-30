@@ -3,7 +3,7 @@
 
 
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-09-05
 program       : *_* log logging module *_*
 """

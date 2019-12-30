@@ -3,12 +3,33 @@
 
 
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-09-05
 program       : *_* Authorization relevant config file *_*
 """
 
-# AlibabaCloud Access Info #
+"""
+*******************************************************************************
+
+            　　 　 　　　　 　 |＼＿/|
+            　　 　 　　　　 　 | ・x・ |
+            　　 ＼＿＿＿＿＿／　　　 |
+            　　 　 |　　　 　　　　　|    私もBilery Zooです...
+            　　　　＼　　　　　 　ノ　
+            　（（（　(/￣￣￣￣(/ヽ)
+
+AlibabaCloud Access Info:
+
+    To generate access info please visit Resource Access Management (RAM) service of AlibabaCloud. See also
+    https://help.aliyun.com/product/28625.html?spm=a2c4g.11186623.6.540.27cb1c72p8iXmj
+        AlibabaCloud_Access_Key -> AlibabaCloud Environment Access key & Secret key
+        
+    About AlibabaCloud available region list, see also
+    https://www.alibabacloud.com/help/zh/doc-detail/40654.htm
+        alibabacloud_region_list     -> AlibabaCloud region set
+
+*******************************************************************************
+"""
 AlibabaCloud_Access_Key = {"ak": "",
                            "secret": "",
                            }
@@ -19,7 +40,28 @@ alibabacloud_region_list = (
     "ap-south-1", "us-west-1", "us-east-1", "eu-central-1", "eu-west-1", "me-east-1",
 )
 
-# AWS Access Info #
+"""
+*******************************************************************************
+
+            　　 　 　　　　 　 |＼＿/|
+            　　 　 　　　　 　 | ・x・ |
+            　　 ＼＿＿＿＿＿／　　　 |
+            　　 　 |　　　 　　　　　|    私もBilery Zooです...
+            　　　　＼　　　　　 　ノ　
+            　（（（　(/￣￣￣￣(/ヽ)
+
+AWS Access Info:
+
+    To generate access info please visit Identity & Access Management (IAM) service of AWS. See also
+    https://docs.aws.amazon.com/en_pv/IAM/latest/UserGuide/introduction.html
+        AWS_Access_Key -> AWS Environment Access key & Secret key
+
+    About AWS available region list, see also
+    https://docs.aws.amazon.com/en_pv/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
+        aws_region_list     -> AWS region set
+
+*******************************************************************************
+"""
 AWS_Access_Key = {"aws_access_key_id": "",
                   "aws_secret_access_key": "",
                   }

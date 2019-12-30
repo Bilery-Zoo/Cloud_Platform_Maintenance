@@ -3,10 +3,11 @@
 
 
 """
-create_author : Bilery Zoo(652645572@qq.com)
+create_author : Bilery Zoo(bilery.zoo@gmail.com)
 create_time   : 2019-09-04
 program       : *_* base functions of AWS handlers module *_*
 """
+
 
 import re
 import json
@@ -15,19 +16,19 @@ import typing
 import boto3
 import botocore
 
-from CloudPlatform_WhitelistIP_Switcher.config.auth import AWS_Access_Key
 from CloudPlatform_WhitelistIP_Switcher.lib.log import LOG, log
 
 logger = LOG().logger()
 
 
 class AWS(object):
-    def __init__(self, region, ):
+    def __init__(self, key: dict, region, ):
         """
         Init construct.
+        :param key: AWS access key.
         :param region: AWS region name.
         """
-        self.AWS_Access_Key = AWS_Access_Key
+        self.key = key
         self.region_name = region
 
     def __repr__(self):
@@ -52,7 +53,7 @@ class AWS(object):
         :param service: AWS service name.
         :return: AWS service client object.
         """
-        return boto3.client(service, region_name=self.region_name, **self.AWS_Access_Key)
+        return boto3.client(service, region_name=self.region_name, **self.key)
 
     @log(logger=logger, if_exit=True)
     def get_ec2_whitelistip_info(self, ip, ) -> typing.Generator:
